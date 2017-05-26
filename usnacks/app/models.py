@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Vendedor(models.Model):
-    VEN_USERNAME = models.CharField(max_length = 20)
+    VEN_USERNAME = models.CharField(max_length = 30)
     VEN_PASSWORD = models.CharField(max_length = 20)
     VEN_TIPO = models.CharField(max_lenghth = 20)
     VEN_PAGO = models.CharField(max_length = 60)
