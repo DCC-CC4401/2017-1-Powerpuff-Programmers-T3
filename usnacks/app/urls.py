@@ -5,6 +5,10 @@ from . import views
 urlpatterns = [
     # ex: /polls/
     url(r'^$', views.busqueda, name='busqueda'),
+
+    url(r'^$', views.index, name='index'),
+
+    url(r'^$', views.login, name='login'),
     # ex: /polls/5/
     url(r'^(producto)/(?P<producto_id>[a-z]+)/$', views.producto, name='producto'),
     # ex: /polls/5/results/
