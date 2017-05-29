@@ -17,7 +17,7 @@ def busquedalogeado(request):
 def index(request):
     return
 def login(request):
-    return
+    return render(request, 'app/login.html')
 
 def vendedor(request, vendedor_id):
     context={
