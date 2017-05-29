@@ -1,25 +1,38 @@
 from django.db import models
 
+class User(models.Model):
+    username = models.CharField(max_length=60)
+    password = models.CharField(max_length=60)
+    tipo = models.CharField(max_length=60)
+    foto = models.ImageField('Foto de perfil')
+
 class MetodosDePago(models.Model):
     name = models.CharField(max_length = 30)
 
+class Categoria(models.Model):
+    name = models.CharField(max_length = 30)
+
+class Localizacion(models.Model):
+    posx = models.FloatField()
+    posy = models.FloatField()
+
+class Horario(models.Model):
+    apertura = models.TimeField('Horario de apertura', null=True)
+    cierre = models.TimeField('Horario de cierre', null=True)
+
 class Vendedor(models.Model):
     title = models.CharField(max_length=10)
-    username = models.CharField(max_length=60)
-    password= models.CharField(max_length=60)
-    tipo = models.CharField(max_length=60)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     pago = models.ManyToManyField(MetodosDePago)
-    foto= models.ImageField('Foto de perfil')
-    horarioApertura = models.TimeField('Horario de apertura', null=True)
-    horarioCierre = models.TimeField('Horario de cierre', null=True)
     activo = models.BooleanField()
+    horario = models.OneToOneField(Horario, on_delete=models.CASCADE)
+    localizacion = models.OneToOneField(Localizacion, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
 class Alumno(models.Model):
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class Producto(models.Model):
     title = models.CharField(max_length=10)
@@ -28,7 +41,7 @@ class Producto(models.Model):
     foto = models.ImageField('Foto de producto')
     precio = models.IntegerField()
     stock = models.IntegerField()
-    categoria = models.CharField(max_length=60)
+    categoria = models.ManyToManyField(Categoria)
     vendedorId = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
 
 class Favoritos(models.Model):

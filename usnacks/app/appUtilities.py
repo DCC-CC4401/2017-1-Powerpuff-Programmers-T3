@@ -18,3 +18,6 @@ def add_vendedor(data):
     for pago in data['pago']:
         vendedor.pago.add(MetodosDePago.object.get(name = pago))
     vendedor.save()
+
+def login(data):
+    user = Blog.objects.get(id=14)
