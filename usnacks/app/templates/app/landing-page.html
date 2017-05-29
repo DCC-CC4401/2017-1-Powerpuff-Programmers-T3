@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <div id="map">
+        <img id="lmap" src="../static/img/mapanologeado.jpg"
+            border="0" width="1365" height="643" usemap="#logmap" alt="" />
+        <map name="logmap" id="lmap">
+            <area  alt="" title="" href="../app/vendedor/chino"  shape="poly"
+                   coords="685,235,682,236,679,238,677,241,676,244,677,247,679,250,682,252,685,253,688,252,691,250,693,247,694,244,693,241,691,238,688,236"
+                   style="outline:none;" target="_self"
+            />
+            <area  alt="" title="" href="../app/vendedor/alfajores" shape="poly"
+                   coords="674,291,671,292,668,294,666,297,665,300,666,303,668,306,671,308,674,309,677,308,680,306,682,303,683,300,682,297,680,294,677,292"
+                   style="outline:none;" target="_self"
+            />
+        </map>
+    </div>
+{% endblock %}
