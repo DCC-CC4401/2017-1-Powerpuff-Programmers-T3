@@ -10,6 +10,9 @@ from .models import *
 def busqueda(request):
     return render(request, 'app/landing-page.html')
 
+def busquedalogeado(request):
+    return render(request, 'app/landing-page-logeado.html')
+
 #index y login puestos porq sino me tira error
 def index(request):
     return
@@ -18,7 +21,7 @@ def login(request):
 
 def vendedor(request, vendedor_id):
     context={
-        'vendedor': Vendedor.objects.filter(username=vendedor_id)[0]
+        'vendedor': Vendedor.objects.filter(title=vendedor_id)[0]
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 

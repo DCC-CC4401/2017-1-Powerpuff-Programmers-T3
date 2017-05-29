@@ -1,12 +1,8 @@
 {% extends 'app/base.html' %}
 {% block content %}
 
-    <script>
-     $(document).ready(function(){
-        $('.modal').modal();
-      });
 
-    </script>
+
     {% load static %}
     <main>
         <div class="container">
@@ -28,10 +24,10 @@
                 <div class="card-content s12">
                     <div class="row">
                         <div class="col s3 offset-s2 hide-on-med-and-down">
-                            <h4 class="card-title grey-text flow-text text-darken-4">Yolanda Martinez</h4>
-                            <p class="medium-small flow-text grey-text">&emsp;&emsp;&ensp;Vendedor Fijo</p>
+                            <h4 class="card-title grey-text flow-text text-darken-4">{{ vendedor.username }}</h4>
+                            <p class="medium-small flow-text grey-text">&emsp;&emsp;&ensp;Vendedor {{ vendedor.tipo }}</p>
                             <p class="flow-text text-darken-4" style="font-size: 0.88rem;">
-                                &emsp;&emsp;Horario: <a class="light-green-text">12:30-14:15</a>
+                                &emsp;&emsp;<a id="horario"></a> <a class="light-green-text" ><a id="apertura"></a> - <a id="cierre"></a></a>
                             </p>
                         </div>
                         <div class="col s3 l2 hide-on-med-and-down center-align">
@@ -234,4 +230,14 @@
             </div>
         </div>
     </main>
+    <script>
+
+    if ("fijo"=="{{ vendedor.tipo }}") {
+        document.getElementById("horario").innerHTML = "Horario: ";
+        document.getElementById("cierre").innerHTML = "{{vendedor.horarioCierre }}";
+        document.getElementById("apertura").innerHTML = "{{ vendedor.horarioApertura}}";
+    } else {
+    }
+    </script>
+
 {% endblock %}
