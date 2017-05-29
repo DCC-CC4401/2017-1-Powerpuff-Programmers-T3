@@ -16,16 +16,13 @@ class Localizacion(models.Model):
     posx = models.FloatField()
     posy = models.FloatField()
 
-class Horario(models.Model):
-    apertura = models.TimeField('Horario de apertura', null=True)
-    cierre = models.TimeField('Horario de cierre', null=True)
-
 class Vendedor(models.Model):
     title = models.CharField(max_length=10)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     pago = models.ManyToManyField(MetodosDePago)
     activo = models.BooleanField()
-    horario = models.OneToOneField(Horario, on_delete=models.CASCADE)
+    hapertura = models.TimeField('Horario de apertura', null=True)
+    hcierre = models.TimeField('Horario de cierre', null=True)
     localizacion = models.OneToOneField(Localizacion, on_delete=models.CASCADE)
 
     def __str__(self):
