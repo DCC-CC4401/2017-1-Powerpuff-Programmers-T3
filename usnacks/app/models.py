@@ -1,33 +1,41 @@
 from django.db import models
 
 class Vendedor(models.Model):
-    VEN_USERNAME = models.CharField(max_length=60)
-    VEN_PASSWORD = models.CharField(max_length=60)
-    VEN_TIPO = models.CharField(max_length=60)
-    VEN_PAGO = models.CharField(max_length=60)
-    VEN_FOTO = models.ImageField('Foto de perfil')
-    VEN_HORARIOA = models.TimeField('Horario de apertura')
-    VEN_HORARIOC = models.TimeField('Horario de cierre')
-    VEN_ACTIVO = models.BooleanField()
+    username = models.CharField(max_length=60)
+    password= models.CharField(max_length=60)
+    tipo = models.CharField(max_length=60)
+    pago = models.CharField(max_length=60)
+    foto= models.ImageField('Foto de perfil')
+    horarioApertura = models.TimeField('Horario de apertura', null=True)
+    horarioCierre= models.TimeField('Horario de cierre', null=True)
+    activo= models.BooleanField()
 
 class Alumno(models.Model):
-    ALU_USERNAME = models.CharField(max_length=20)
-    ALU_PASSWORD = models.CharField(max_length=20)
+    username= models.CharField(max_length=20)
+    password= models.CharField(max_length=20)
 
 class Producto(models.Model):
-    PRO_NOMBRE = models.CharField(max_length=20)
-    PRO_DESCRIPCION = models.CharField(max_length=200)
-    PRO_FOTO = models.ImageField('Foto de producto')
-    PRO_PRECIO = models.IntegerField()
-    PRO_STOCK = models.IntegerField()
-    PRO_CATEGORIA = models.CharField(max_length=60)
-    PRO_IDVENDEDOR = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
+    nombre= models.CharField(max_length=20)
+    descripcion= models.CharField(max_length=200)
+    foto= models.ImageField('Foto de producto')
+    precio= models.IntegerField()
+    stock= models.IntegerField()
+    categoria= models.CharField(max_length=60)
+    vendedorId= models.ForeignKey(Vendedor, on_delete=models.CASCADE)
 
 class Favoritos(models.Model):
-    FAV_IDALUMNO = models.ForeignKey(Alumno, on_delete=models.CASCADE)
-    FAV_IDVENDEDOR = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
+    alumnoId = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    vendedorId= models.ForeignKey(Vendedor, on_delete=models.CASCADE)
 
 class Historial(models.Model):
-    HIS_IDPRODUCTO = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    HIS_FECHA = models.TimeField('fecha')
-    HIS_STOCK = models.IntegerField()
+    ProductoId= models.ForeignKey(Producto, on_delete=models.CASCADE)
+    fecha = models.TimeField('fecha')
+    Hstock= models.IntegerField()
+
+v=Vendedor(tipo="ambulante",username="chino", password="clavechino",activo="True",
+           foto="../static/img/chinoavatar.jpg", pago="efectivo")
+v.save()
+
+v=Vendedor(tipo="ambulante",username="alfajores", password="clavechino",activo="True",
+           foto="../static/img/alfajoresavatar.png", pago="efectivo")
+v.save()
