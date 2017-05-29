@@ -16,16 +16,13 @@ class Localizacion(models.Model):
     posx = models.FloatField()
     posy = models.FloatField()
 
-class Horario(models.Model):
-    apertura = models.TimeField('apertura')
-    cierre = models.TimeField('cierre')
-
 class Vendedor(models.Model):
     title = models.CharField(max_length=10)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     pago = models.ManyToManyField(MetodosDePago)
     activo = models.BooleanField()
-    horario = models.OneToOneField(Horario, on_delete=models.CASCADE)
+    hapertura = models.TimeField('Horario de apertura', null=True)
+    hcierre = models.TimeField('Horario de cierre', null=True)
     localizacion = models.OneToOneField(Localizacion, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -69,30 +66,4 @@ v.save()
 v=Vendedor(tipo="fijo",username="Sonia", password="clavesonia",activo="True",
            foto="../static/img/sonia.jpg", pago="efectivo", title="sonia", horarioApertura='8:00', horarioCierre='6:00')
 v.save()
-"""
-
-""""
-c1 = Categoria(name = "Efectivo")
-c2 = Categoria(name = "Debito")
-c3 = Categoria(name = "Junaeb")
-c1.save()
-c2.save()
-c3.save()
-
-h1 = Horario(apertura = "10.30", cierre = "19.00")
-
-L1 = Localizacion(posx = 10.234, posy = 12.4532)
-L2 = Localizacion(posx = 14.234, posy = 11.4532)
-L1.save()
-L2.save()
-
-u1 = User(username = "Chino", password = "chino", tipo = "ambulante", foto="../static/img/chinoavatar.jpg")
-u1.save()
-u2 = User(username = "Alfajores", password = "alfajores", tipo = "fijo", foto="../static/img/grandma.jpg")
-u2.save()
-
-v1 = Vendedor(title = "chino", user = User.objects.get(id=1), pago = MetodosDePago.objects.get(id=1), activo = True,
-             localizacion = Localizacion.objects.get(id=1))
-v2 = Vendedor(title = "tia", user = User.objects.get(id=2), pago = MetodosDePago.objects.get(id=2),
-              horario = Horario.objects.get(id=2), localizacion = Localizacion.objects.get(id=2))
 """
