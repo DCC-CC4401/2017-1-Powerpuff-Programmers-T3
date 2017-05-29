@@ -10,6 +10,9 @@ class Vendedor(models.Model):
     horarioCierre= models.TimeField('Horario de cierre', null=True)
     activo= models.BooleanField()
 
+    def __str__(self):
+        return self.username
+
 class Alumno(models.Model):
     username= models.CharField(max_length=20)
     password= models.CharField(max_length=20)
@@ -31,11 +34,3 @@ class Historial(models.Model):
     ProductoId= models.ForeignKey(Producto, on_delete=models.CASCADE)
     fecha = models.TimeField('fecha')
     Hstock= models.IntegerField()
-
-v=Vendedor(tipo="ambulante",username="chino", password="clavechino",activo="True",
-           foto="../static/img/chinoavatar.jpg", pago="efectivo")
-v.save()
-
-v=Vendedor(tipo="ambulante",username="alfajores", password="clavechino",activo="True",
-           foto="../static/img/alfajoresavatar.png", pago="efectivo")
-v.save()
