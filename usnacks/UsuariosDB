@@ -33,3 +33,7 @@ v4.save()
 v3.pago.add(p1)
 v4.pago.add(p1)
 
+p=Producto(title="arroz",nombre="Arroz",foto="../static/img/rice.png",precio=2000,stock=3,vendedorId=Vendedor.objects.get(id=1),descripcion="muy rico arroz")
+p.save()
+a=Producto(title="pollo",nombre="Pollo",foto="../static/img/chicken.png",precio=2500,stock=4,vendedorId=Vendedor.objects.get(id=1),descripcion="buen pollo")
+a.save()
