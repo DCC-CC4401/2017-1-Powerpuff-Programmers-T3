@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import *
-from forms import *
-from appUtilities import *
+from app.models import *
+from app.forms import forms
+#from app.appUtilities import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
@@ -62,7 +62,7 @@ def signup(request):
         form = SignUp
 
     return render(request, 'app/signup.html', {'form': form})
-
+    
 def producto(request,producto_id):
     return render(request, 'app/gestion-productos.html')
     #return HttpResponse("Estas viendo el producto %s " % producto_id)
