@@ -20,7 +20,7 @@ def index(request):
         return render(request, 'app/base.html', user)
         return render(request, 'app/base.html', user)
 
-def login(request, data):
+def login(request):
     return render(request, 'app/login.html')
 
 def login_user(request, data):
@@ -36,6 +36,8 @@ def vendedor(request, vendedor_id):
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
+def singup(request):
+    return render(request, 'app/singup.html')
 
 def producto(request,producto_id):
     return render(request, 'app/gestion-productos.html')
