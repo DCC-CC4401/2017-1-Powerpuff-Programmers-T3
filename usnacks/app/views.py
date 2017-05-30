@@ -21,14 +21,19 @@ def index(request):
         return render(request, 'app/base.html', user)
 
 def login(request):
-    return render(request, 'app/login.html')
+    if request.method == 'POST':
+        form = LogIn(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            # do something with your results
+            u = User.objects.all()
+            return HttpResponse(str(u.first()))
+    else:
+        form = LogIn
 
-def login_user(request, data):
-    user = login_user(data)
-    if user:
-        return render(request, 'app/base.html', user)
-    context = ["usuario incorrecto"]
-    return render(request, 'app/login.html', context)
+    return render(request, 'app/login.html', {'form': form})
+
 
 def vendedor(request, vendedor_id):
     context={
@@ -44,8 +49,22 @@ def Vistavendedor(request, vendedor_id, usuario_id):
     return render(request, 'app/vendedor-profile-page.html',context)
 
 def signup(request):
-    return render(request, 'app/signup.html')
+    if request.method == 'POST':
+        form = SignUp(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            tipo = form.cleaned_data.get('tipo')
+            # do something with your results
+            return HttpResponse(username + password + tipo)
+    else:
+        form = SignUp
+
+    return render(request, 'app/signup.html', {'form': form})
 
 def producto(request,producto_id):
     return render(request, 'app/gestion-productos.html')
     #return HttpResponse("Estas viendo el producto %s " % producto_id)
+
+def create_user(request, post):
+return HttpResponse("Estas viendo el producto %s " % post)
