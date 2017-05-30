@@ -15,9 +15,20 @@ def busquedalogeado(request):
 
 #index y login puestos porq sino me tira error
 def index(request):
-    return
-def login(request):
+    user = login_user(data)
+    if user:
+        return render(request, 'app/base.html', user)
+        return render(request, 'app/base.html', user)
+
+def login(request, data):
     return render(request, 'app/login.html')
+
+def login_user(request, data):
+    user = login_user(data)
+    if user:
+        return render(request, 'app/base.html', user)
+    context = ["usuario incorrecto"]
+    return render(request, 'app/login.html', context)
 
 def vendedor(request, vendedor_id):
     context={
@@ -27,4 +38,5 @@ def vendedor(request, vendedor_id):
 
 
 def producto(request,producto_id):
-    return HttpResponse("Estas viendo el producto %s " % producto_id)
+    return render(request, 'app/gestion-productos.html')
+    #return HttpResponse("Estas viendo el producto %s " % producto_id)
