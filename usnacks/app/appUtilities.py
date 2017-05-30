@@ -1,6 +1,6 @@
 import datetime
 from django.contrib.auth.models import User
-from app.models import MetodosDePago, Vendedor, Alumno, Producto, Favoritos, Historial, Localizacion
+from models import MetodosDePago, Vendedor, Alumno, Producto, Favoritos, Historial, Localizacion
 
 ## hago de la localizacion un objeto
 def loca(localizacion):

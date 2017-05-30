@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from app.models import *
-from app.forms import forms
-#from app.appUtilities import *
+from models import *
+from forms import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
@@ -28,9 +27,10 @@ def login(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            # do something with your results
-            u = User.objects.all()
-            return HttpResponse(str(u.first()))
+            u = User.objects.filter(username=username).first()
+            if u.password == password:
+                return HttpResponse("win")
+            return HttpResponse("fallo")
     else:
         form = LogIn
 
@@ -38,14 +38,16 @@ def login(request):
 
 def vendedor(request, vendedor_id):
     context={
-        'vendedor': Vendedor.objects.filter(title=vendedor_id)[0]
+        'vendedor': Vendedor.objects.filter(title=vendedor_id)[0],
+        'productos': Producto.objects.filter(vendedorId__title=vendedor_id)
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
 def Vistavendedor(request, vendedor_id, usuario_id):
     context={
         'vendedor': Vendedor.objects.filter(title=vendedor_id)[0],
-        'usuario': User.objects.filter(username=usuario_id)[0]
+        'usuario': User.objects.filter(username=usuario_id)[0],
+        'productos': Producto.objects.filter(vendedorId__title=vendedor_id)
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
@@ -57,6 +59,8 @@ def signup(request):
             password = form.cleaned_data.get('password')
             tipo = form.cleaned_data.get('tipo')
             # do something with your results
+            u = User(username = username, password = password, tipo = tipo)
+            u.save()
             return HttpResponse(username + password + tipo)
     else:
         form = SignUp
