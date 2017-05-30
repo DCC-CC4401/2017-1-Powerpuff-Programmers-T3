@@ -34,6 +34,7 @@ class Vendedor(models.Model):
 class Alumno(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+#add Yni
 class Producto(models.Model):
     title = models.CharField(max_length=10)
     nombre= models.CharField(max_length=20)
