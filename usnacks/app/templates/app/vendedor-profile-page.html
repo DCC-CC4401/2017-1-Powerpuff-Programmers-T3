@@ -244,10 +244,10 @@
     </main>
     <script>
 
-    if ("fijo"=="{{ vendedor.user.tipo }}") {
+    if ("Fijo"=="{{ vendedor.user.tipo }}") {
         document.getElementById("horario").innerHTML = "Horario: ";
-        document.getElementById("cierre").innerHTML = "{{vendedor.horarioCierre }}";
-        document.getElementById("apertura").innerHTML = "{{ vendedor.horarioApertura}}";
+        document.getElementById("cierre").innerHTML = "{{vendedor.hcierre }}";
+        document.getElementById("apertura").innerHTML = "{{ vendedor.hapertura}}";
     } else {
     }
     if ("True"=="{{ vendedor.activo }}") {
