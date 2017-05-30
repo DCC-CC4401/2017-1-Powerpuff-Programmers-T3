@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from app.models import *
-from app.forms import forms
-#from app.appUtilities import *
+from models import *
+from forms import *
+from appUtilities import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
@@ -30,7 +30,7 @@ def login(request):
             password = form.cleaned_data.get('password')
             # do something with your results
             u = User.objects.all()
-            return HttpResponse(str(u.first()))
+            return HttpResponse(u.first())
     else:
         form = LogIn
 
