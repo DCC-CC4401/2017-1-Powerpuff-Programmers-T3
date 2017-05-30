@@ -1,8 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from models import *
-from forms import *
+from app.models import *
+from app.forms import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
