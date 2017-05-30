@@ -44,14 +44,16 @@ def login(request):
 
 def vendedor(request, vendedor_id):
     context={
-        'vendedor': Vendedor.objects.filter(title=vendedor_id)[0]
+        'vendedor': Vendedor.objects.filter(title=vendedor_id)[0],
+        'productos': Producto.objects.filter(vendedorId__title=vendedor_id)
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
 def Vistavendedor(request, vendedor_id, usuario_id):
     context={
         'vendedor': Vendedor.objects.filter(title=vendedor_id)[0],
-        'usuario': User.objects.filter(username=usuario_id)[0]
+        'usuario': User.objects.filter(username=usuario_id)[0],
+        'productos': Producto.objects.filter(vendedorId__title=vendedor_id)
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
