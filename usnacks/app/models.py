@@ -50,20 +50,3 @@ class Historial(models.Model):
     fecha = models.TimeField('fecha')
     Hstock = models.IntegerField()
 
-
-"""
-v=Vendedor(tipo="ambulante",username="El Chino", password="clavechino",activo="True",
-           foto="../static/img/chinoavatar.jpg", pago="efectivo", title="chino")
-v.save()
-
-v=Vendedor(tipo="ambulante",username="Tia de los alfajores", password="clavetia",activo="True",
-           foto="../static/img/grandma.jpg", pago="efectivo", title="alfajores")
-v.save()
-v=Vendedor(tipo="ambulante",username="Denis", password="clavetia",activo="True",
-           foto="../static/img/grandma.jpg", pago="efectivo", title="denis")
-v.save()
-
-v=Vendedor(tipo="fijo",username="Sonia", password="clavesonia",activo="True",
-           foto="../static/img/sonia.jpg", pago="efectivo", title="sonia", horarioApertura='8:00', horarioCierre='6:00')
-v.save()
-"""
