@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from forms import *
+from appUtilities import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
@@ -22,14 +23,18 @@ def index(request):
         return render(request, 'app/base.html', user)
 
 def login(request):
-    return render(request, 'app/login.html')
+    if request.method == 'POST':
+        form = LogIn(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            # do something with your results
+            u = User.objects.all()
+            return HttpResponse(str(u.first()))
+    else:
+        form = LogIn
 
-def login_user(request, data):
-    user = login_user(data)
-    if user:
-        return render(request, 'app/base.html', user)
-    context = ["usuario incorrecto"]
-    return render(request, 'app/login.html', context)
+    return render(request, 'app/login.html', {'form': form})
 
 def vendedor(request, vendedor_id):
     context={

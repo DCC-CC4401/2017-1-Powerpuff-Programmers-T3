@@ -6,6 +6,9 @@ class User(models.Model):
     tipo = models.CharField(max_length=60)
     foto = models.ImageField('Foto de perfil')
 
+    def __str__(self):
+        return self.username
+
 class MetodosDePago(models.Model):
     name = models.CharField(max_length = 30)
 
