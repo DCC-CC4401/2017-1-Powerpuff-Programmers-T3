@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
+from forms import *
+from appUtilities import *
 
 #1. Interfaz de busqueda de vendedores
 #2. Ficha de vendedor (vista por un alumno)
@@ -15,7 +17,7 @@ def busquedalogeado(request):
 
 #index y login puestos porq sino me tira error
 def index(request):
-    user = login_user(data)
+    user = login_user()
     if user:
         return render(request, 'app/base.html', user)
         return render(request, 'app/base.html', user)
@@ -31,9 +33,14 @@ def login(request):
             return HttpResponse(str(u.first()))
     else:
         form = LogIn
+<<<<<<< HEAD
 
     return render(request, 'app/login.html', {'form': form})
 
+=======
+
+    return render(request, 'app/login.html', {'form': form})
+>>>>>>> 8f17b2b676281e229fe8676fbc75c6de47406b9d
 
 def vendedor(request, vendedor_id):
     context={
@@ -67,4 +74,8 @@ def producto(request,producto_id):
     #return HttpResponse("Estas viendo el producto %s " % producto_id)
 
 def create_user(request, post):
+<<<<<<< HEAD
 return HttpResponse("Estas viendo el producto %s " % post)
+=======
+    return HttpResponse("Estas viendo el producto %s " % post)
+>>>>>>> 8f17b2b676281e229fe8676fbc75c6de47406b9d

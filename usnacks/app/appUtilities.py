@@ -1,6 +1,6 @@
 import datetime
 from django.contrib.auth.models import User
-from usnacks.app.models import MetodosDePago, Vendedor, Alumno, Producto, Favoritos, Historial, Localizacion
+from models import MetodosDePago, Vendedor, Alumno, Producto, Favoritos, Historial, Localizacion
 
 ## hago de la localizacion un objeto
 def loca(localizacion):
@@ -39,10 +39,10 @@ def add_vendedor(data):
     return vendedor
 
 ## verifico si es el usuario y si esta bien retorno el usuario para buscar si es vendedor o alumno y si no falso
-def login_user(username):
-    user = User.objects.get(username = data['username'])
-    if user.password == data['password']:
-        return user
+def login_user(user, password):
+    u = User.objects.filter(username = user).first()
+    if u.password == password:
+        return True
     return False
 
 ##listo creo
