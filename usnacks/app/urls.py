@@ -10,7 +10,7 @@ urlpatterns = [
 
     url(r'^$', views.index, name='index'),
 
-    url(r'^singup/$', views.singup, name='singup'),
+    url(r'^signup/$', views.signup, name='signup'),
 
     url(r'^login/$', views.login, name='login'),
     # ex: /polls/5/
