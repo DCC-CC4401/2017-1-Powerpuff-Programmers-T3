@@ -36,8 +36,8 @@ def vendedor(request, vendedor_id):
     }
     return render(request, 'app/vendedor-profile-page.html',context)
 
-def singup(request):
-    return render(request, 'app/singup.html')
+def signup(request):
+    return render(request, 'app/signup.html')
 
 def producto(request,producto_id):
     return render(request, 'app/gestion-productos.html')
