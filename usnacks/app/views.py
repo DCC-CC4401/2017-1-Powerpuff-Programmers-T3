@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from models import *
 from forms import *
 
@@ -16,10 +17,7 @@ def busquedalogeado(request):
 
 #index y login puestos porq sino me tira error
 def index(request):
-    user = login_user()
-    if user:
-        return render(request, 'app/base.html', user)
-        return render(request, 'app/base.html', user)
+    return render(request, 'app/base.html', user)
 
 def login(request):
     if request.method == 'POST':
@@ -29,12 +27,20 @@ def login(request):
             password = form.cleaned_data.get('password')
             u = User.objects.filter(username=username).first()
             if u.password == password:
-                return HttpResponse("win")
-            return HttpResponse("fallo")
+                context = {
+                    'user': u
+                }
+                return HttpResponseRedirect(reverse('busquedalogeado'))
+            else:
+                context = {
+                    'error': "Usuario o contrasena incorrecta",
+                    'form': form
+                }
+                return render(request, 'app/login.html', context)
     else:
         form = LogIn
 
-    return render(request, 'app/login.html', {'form': form})
+        return render(request, 'app/login.html', {'form': form})
 
 def vendedor(request, vendedor_id):
     context={
@@ -59,7 +65,7 @@ def signup(request):
             # do something with your results
             u = User(username = username, password = password, tipo = tipo)
             u.save()
-            return HttpResponse(username + password + tipo)
+            return HttpResponseRedirect(reverse('login'))
     else:
         form = SignUp
 
