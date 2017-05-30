@@ -33,14 +33,8 @@ def login(request):
             return HttpResponse(str(u.first()))
     else:
         form = LogIn
-<<<<<<< HEAD
 
     return render(request, 'app/login.html', {'form': form})
-
-=======
-
-    return render(request, 'app/login.html', {'form': form})
->>>>>>> 8f17b2b676281e229fe8676fbc75c6de47406b9d
 
 def vendedor(request, vendedor_id):
     context={
@@ -74,8 +68,5 @@ def producto(request,producto_id):
     #return HttpResponse("Estas viendo el producto %s " % producto_id)
 
 def create_user(request, post):
-<<<<<<< HEAD
-return HttpResponse("Estas viendo el producto %s " % post)
-=======
     return HttpResponse("Estas viendo el producto %s " % post)
->>>>>>> 8f17b2b676281e229fe8676fbc75c6de47406b9d
+
