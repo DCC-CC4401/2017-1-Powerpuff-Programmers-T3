@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^(producto)/(?P<producto_id>[a-z]+)/$', views.producto, name='producto'),
     # ex: /polls/5/results/
     url(r'^(vendedor)/(?P<vendedor_id>[a-z]+)/$', views.vendedor, name='vendedor'),
+    url(r'^(vendedor)/(?P<vendedor_id>[a-z]+)/(?P<usuario_id>[a-zA-z]+)/$', views.Vistavendedor, name='usuario')
 
 
 
