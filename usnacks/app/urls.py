@@ -10,7 +10,9 @@ urlpatterns = [
 
     url(r'^$', views.index, name='index'),
 
-    url(r'^$', views.login, name='login'),
+    url(r'^singup/$', views.singup, name='singup'),
+
+    url(r'^login/$', views.login, name='login'),
     # ex: /polls/5/
     url(r'^(producto)/(?P<producto_id>[a-z]+)/$', views.producto, name='producto'),
     # ex: /polls/5/results/
